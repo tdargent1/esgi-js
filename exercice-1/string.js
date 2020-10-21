@@ -86,7 +86,7 @@ function verlan(text){
 
     return text.split(" ").map(word => word.split("").reverse().join("")).join(" ");
 }
-console.log(verlan("Hello World"));
+verlan("Hello World");
 
 function yoda(text){
     if(typeof text !== "string" || text === "")
@@ -95,9 +95,3 @@ function yoda(text){
     return text.split(" ").reverse().join(" ");
 }
 yoda("Hello world");
-
-function vig(text){
-    if(typeof text !== "string" || text === "")
-        return "";
-    
-}
