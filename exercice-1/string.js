@@ -96,8 +96,8 @@ function yoda(text){
 }
 yoda("Hello world");
 
-/*function vig(text){
+function vig(text){
     if(typeof text !== "string" || text === "")
         return "";
     
-}*/
+}
