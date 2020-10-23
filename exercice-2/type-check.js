@@ -1,13 +1,17 @@
-function type_check_v1(value, type) {
-    if (Array.isArray(value)) {
-        return type == "array";
-    }
-    
-    if (value === null) {
-        return type == "null";
-    }
+function type_check_v1(val, type) {
+    switch (typeof val) {
+        case "object":
+            if (type === "array") {
+                return Array.isArray(val);
+            }
+            if (type === "null") {
+                return val === null;
+            }
 
-    return type === (typeof value);
+            return val != null && ! Array.isArray(val);
+        default:
+            return typeof val === type;
+    }
 }
 
 /* Vérification pour la fonction type_check_v1 */
