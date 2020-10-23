@@ -12,7 +12,7 @@ function type_check_v1(value, type) {
         }
     }
     
-    return typeof val === type;
+    return typeof value === type;
 }
 
 function type_check_v2(arg1, conf) {
