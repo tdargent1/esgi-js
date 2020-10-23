@@ -15,7 +15,27 @@ function type_check_v1(value, type) {
     return typeof value === type;
 }
 
-function type_check_v2(value, conf) {
+function type_check_v2(arg1, conf) {
+    if(conf["type"] !== undefined) {
+        if(typeof arg1 !== conf["type"]) {
+            return false;
+        } 
+    }
+    if(conf["value"] !== undefined) {
+        if(arg1 !== conf["value"]) {
+            return false;
+        }
+    }
+    if(conf["enum"] !== undefined) {
+        if(!(arg1 in conf["enum"])) {
+            return false;
+        } 
+    }
+
+    return true;
+}
+
+function type_check(value, conf) {
     for(key in conf) {
         switch (key) {
             case "value":
@@ -57,3 +77,5 @@ console.log(type_check_v2({prop1 : 1}, {type :  "object"}));
 console.log(type_check_v2("foo", {type : "string", value : "foo"}));
 console.log(type_check_v2("bar", {type : "string", value : "foo"}));
 console.log(type_check_v2(3, {enum : ["foo", "bar", 3]}));
+
+console.log(type_check("string", { type: "string", enum: ["test", "test2"] }));
