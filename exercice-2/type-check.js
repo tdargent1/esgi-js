@@ -1,5 +1,5 @@
-function type_check_v1(val, type) {
-    if(typeof val == "object") {
+function type_check_v1(value, type) {
+    if(typeof value == "object") {
         switch (type) {
             case "null":
                 return value === null;
