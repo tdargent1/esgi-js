@@ -1,12 +1,12 @@
 function type_check_v1(value, type) {
     if(typeof value == "object") {
         switch (type) {
-            case "null":
-                return value === null;
-            case "array":
-                return Array.isArray(value);
             case "object":
                 return value !== null && ! Array.isArray(value);
+            case "array":
+                return Array.isArray(value);
+            case "null":
+                return value === null;
             default:
                 return false;
         }
