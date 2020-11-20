@@ -68,18 +68,17 @@ String.prototype.yoda = function (){
 }
 console.log("Hello World".yoda());
 
-
-String.prototype.vig = function (string, code) {
-    if (typeof string !== "string") return "";
-    if (string.length === 0) return string;
+String.prototype.vig = function (code) {
+    if (typeof this.valueOf() !== "string") return "";
+    if (this.valueOf().length === 0) return string;
   
-    while (code.length < string.length) {
+    while (code.length < this.valueOf().length) {
       code += code;
     }
-    code = code.substr(0, string.length);
+    code = code.substr(0, this.valueOf().length);
     let codeIndex = 0;
   
-    return string
+    return this.valueOf()
       .split("")
       .map((letter, index) => {
         letter = letter.toLowerCase();
@@ -95,4 +94,34 @@ String.prototype.vig = function (string, code) {
       })
       .join("");
 }
-console.log(vig('wikipedia', 'crypto'));
+console.log("wikipedia".vig('crypto'));
+
+Object.prototype.prop_access = function (text) {
+    if (this === "undefined") 
+        return this;
+    if(typeof text !== "string" || text === "")
+        return "";
+
+    let access = text.split(".");
+    let propPath = access[0];
+    let value = this;
+
+    for (let i = 0; i < access.length; i++) {
+        propPath += access[i];
+
+        if (!value[access[i]]) {
+            return this + " n'existe pas";
+        }
+        value = value[access[i]];
+    }
+
+    return value;
+}
+var prairie = {
+    animal : {
+        type : {
+            name : "chien"
+        }
+    }
+}
+console.log(prairie.prop_access('animal.type.name'));
