@@ -1,1 +1,1 @@
-docker-compose run node node ./intro/hello.js
+docker-compose run node node ./path/file.js
